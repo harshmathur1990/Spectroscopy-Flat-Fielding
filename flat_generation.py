@@ -3,6 +3,31 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.ndimage
 
+'''
+Master flat
+Inputs
+    Single file of stack of flats 𝑁×𝑌×𝑊 
+    Master dark file 𝑌×𝑊 
+    Corrected fringe flat 𝑌×𝑊
+
+Outputs
+    Master flat file saved in Level-1 directory 𝑌×𝑊 
+    Row and column shifts saved in Level-1 directory as text 
+    Line profile saved in Level-1 directory as text 
+
+Process
+    Stack of 𝑁 number of flat files, master dark are loaded 
+    Flats are averaged then master dark is subtracted 
+    X inclination is corrected by shifting the columns 
+    Column shift values are obtained by tracing the slit profile 
+    Y inclination is corrected by shifting the rows 
+    Row shift values are obtained by tracing a fine spectral line 
+    For this trace, flat is corrected by fringe flat to reduce the contrast of fringes due to etaloning effect 
+    After X, Y inclination corrections, image is aligned and medial spectral line is calculated 
+    Half of rows from middle of top and bottom beams of the image with reduced fringe contrast are used for this 
+    Each row in flat is divided with the line profile 
+    Result is formatted and saved as FLATMASTER
+'''
 
 def generate_master_flat(base_path, file_format, num_of_files=18, dark_master_path=''):
     filename_list = list()
