@@ -3,7 +3,7 @@ astropy==3.1.1
 backcall==0.1.0
 cloudpickle==0.6.1
 cycler==0.10.0
-dask==1.0.0
+dask==2021.10.0
 decorator==4.3.0
 ipdb==0.11
 ipython==7.2.0
